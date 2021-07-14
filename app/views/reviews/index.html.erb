@@ -1,1 +1,29 @@
-<h1>All the Reviews</h1>  
+<%=  display_header(@review)%> 
+<%= render partial: 'layouts/errors', locals: {object: @review}  %>
+<%= form_for(@review) do |f|%>
+  <% if params[:restaurant_id] %>
+    <%= f.hidden_field :restaurant_id %>
+  <% else %>
+    <div>
+      <%= f.label :restaurant_id, "Select a Restaurant" %>
+      <%= f.collection_select :restaurant_id, Restaurant.alpha, :id, :name_and_category, include_blank: true %>
+    </div>
+  <% end %>
+  <div>
+    <%= f.label :stars %>
+    <%= f.number_field :stars, min:0, max:5 %>
+  </div>
+  <br>
+  <div>
+    <%= f.label :title %>
+    <%= f.text_field :title %>
+  </div>
+  <br>
+  <div>
+    <%= f.label :content %>
+    <%= f.text_area :content, size: "25x10" %>
+  </div>
+  <br>
+    
+    <%= f.submit %>
+<% end %>

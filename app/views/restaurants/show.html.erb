@@ -1,7 +1,16 @@
-<%= restaurant.name %> 
-<%= restaurant.type %>
-<%= restaurant.price_range %>
-<%= restaurant.address %>
-<%= restaurant_company.name %>
-<% link_to "Edit", edit_restaurant_path %>
-<% link_to "Delete", delete_restaurant_path %> 
+<h1><%= @restaurant.name%>  </h1>
+
+
+<h2> <%= @restaurant.category_name %> </h2>
+<div>
+  <p><%= @restaurant.price_range %></p>
+  <p><%= @restaurant.address %></p>
+</div>
+
+<h3>Added by: <%= link_to @restaurant.user, user_path(@user)%> </h3>
+
+<%= link_to "Edit #{@restaurant.name}", edit_restaurant_path(@restaurant) if @restaurant.user == current_user%>
+
+<br></br>
+
+<%= link_to "See all Reviews", restaurant_reviews_path(@restaurant) %>

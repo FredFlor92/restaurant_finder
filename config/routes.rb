@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   
+  resources :categories
   root 'sessions#home'
 
   get '/login' => 'sessions#new'
@@ -14,6 +15,7 @@ Rails.application.routes.draw do
   resources :restaurants do
     resources :companies, only: [:new, :index]
   end 
-  resources :users, only: [:show]
+  resources :categories
+  resources :users
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
