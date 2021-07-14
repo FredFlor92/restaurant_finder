@@ -7,11 +7,12 @@ class RestaurantsController < ApplicationController
     end 
 
     def new
+        @restaurant = Restaurant.new 
         if params[:category_id]
             category = Category.find(params[:category_id])
             @restaurants = category.restaurants 
           
-          else 
+        else 
             @restaurants = Restaurant.order_by_rating.includes(:category) 
         end 
     end 

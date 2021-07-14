@@ -9,5 +9,4 @@
  <h2><%= link_to r.name, restaurant_path(r.id)%> - <%= r.category.name %> - <%= r.price_range %> </h2>
   <%= link_to "Write a review", new_restaurant_review_path(r.id) %> 
   <p><%= r.address %></p>
-  
-<% end %>
+  <% end %>

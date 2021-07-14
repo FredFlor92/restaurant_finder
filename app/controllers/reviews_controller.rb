@@ -1,9 +1,14 @@
 class ReviewsController < ApplicationController
     before_action :redirect_if_not_logged_in 
-    def new 
-        Restaurant.find_by_id(params[":restaurant_id"]) 
-        @review = @restaurant.reviews.build
-    end 
+    
+    def new
+        @review = Review.new 
+        if @restaurant = Restaurant.find_by_id(params[:restaurant_id])
+          @review = @restaurant.reviews.build
+        else
+          @review = Review.new
+        end
+    end
 
     def create
         @review = current_user.reviews.build(review_params)
@@ -12,24 +17,26 @@ class ReviewsController < ApplicationController
         else
           render :new
         end
-    end 
-  
-    def show 
-        @review = Review.find_by_id(params[:id])   
-    end 
+    end
 
+    def show
+        @review = Review.find_by_id(params[:id])
+    end
+    
     def index
         if @restaurant = Restaurant.find_by_id(params[:restaurant_id])
-            #nested
-            @reviews = @restaurant.reviews
-          else
-            #it's not nested
-            @reviews = Review.all
-          end
+          @reviews = @restaurant.reviews
+        else
+          @reviews = Review.all
         end
-    end 
+    end
+
+    private 
 
     def review_params
-        params.require(:review)permit(:restaurant_id, :content, :stars, :title)     
+        params.require(:review).permit(:restaurant_id, :content, :stars, :title)  
     end 
+
+
+
 end

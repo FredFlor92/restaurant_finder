@@ -9,27 +9,13 @@
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
-
+  
   <body>
-  <% if logged_in? %> 
-  <nav class='navbar'>
   <br><br>
-  <%= link_to 'Log In', login_path %> |
-  <%= link_to "Log Out", logout_path, method: :delete %> |
-  <%= link_to "Signup", signup_path %> |
-  <%= link_to "Add a Restaurant", new_restaurant_path %> |
-  <%= link_to "All Restaurant", restaurants_path %> |
-  <%= link_to "Add a Review", new_review_path %> |
-  <%= link_to "All Reviews", reviews_path %> |
-  <%= link_to "Add A Company", new_company_path %> |
-  <%= link_to "All Companies", companies_path %> |
-  <%= link_to "All Categories", categories_path %> 
-  <%= link_to "Home", user_path(:user_id)%>  
-
-  <% else %>
-
-  <% end %>
-  <div class='container'>
+  
+  <div><%= render_nav_bar %></div>
+  
+  <body>
     <%= yield %>
   </body>
 </html>

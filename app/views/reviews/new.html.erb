@@ -1,7 +1,8 @@
 <%=  display_header(@review)%> 
 
-<%= render partial: 'layouts/errors', locals: {object: @review}  %>
-<%= form_for(@review) do |f|%>
+
+ <%= form_for(@review) do |f|%>
+    <%= render 'layouts/errors', object: f.object %>
   <% if params[:restaurant_id] %>
     <%= f.hidden_field :restaurant_id %>
   <% else %>
@@ -12,7 +13,7 @@
   <% end %>
   <div>
     <%= f.label :stars %>
-    <%= f.number_field :stars, min:0, max:5 %>
+    <%= f.number_field :stars, min:1, max:5 %>
   </div>
   <br>
   <div>

@@ -10,6 +10,6 @@
 
 <%= link_to "Edit #{@restaurant.name}", edit_restaurant_path(@restaurant) if @restaurant.user == current_user%>
 
-<br></br>
+<br><br>
 
 <%= link_to "See all Reviews", restaurant_reviews_path(@restaurant) %>

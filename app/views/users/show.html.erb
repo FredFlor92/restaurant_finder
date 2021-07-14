@@ -1,9 +1,8 @@
-<h1>Restaurant Finder</h1>
-<h2>Welcome to <%= @user.username%>'s homepage! </h2>
-
-<h3>Here are the restaurants reviewed by <%=@user.username%>:</h3>
+<h1>Hello, <%= @user.username %>! Welcome to your Restaurant Finder Home Page!</h1> 
+<h2>Catalog all your favorite places to eat!</h2> 
+<h3>Here are all <%= @user.username %>'s restaurants:</h3>
 <ul>
-  <% @user.reviewed_restaurants.each do |r|%>
-  <li> <%= link_to r.name_and_category, restaurant_path(r)%> </li>
+  <% @user.restaurants.each do |r|%>
+  <li> <%= link_to r.created_restaurants, restaurants_path(r)%> </li> 
   <% end %>
 </ul>
