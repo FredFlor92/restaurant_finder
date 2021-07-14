@@ -9,5 +9,5 @@ class Restaurant < ApplicationRecord
     validates :name, :address, uniqueness: true  
     validates :name, length: { minimum: 3}
 
-    accepts_nested_attributes_for :company
+    #accepts_nested_attributes_for :company
 end
