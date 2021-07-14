@@ -1,15 +1,14 @@
 class Restaurant < ApplicationRecord
-    has_many :reviews
-    has_many :users, through: reviews
-
     belongs_to :user
-    belongs_to :category
+    belongs_to :category   
+    has_many :reviews
+    has_many :users, through: :reviews 
+
+    #accepts_nested_attributes_for :company
 
     validates :name, presence: true  
     validates :address, uniqueness: true  
     validate :not_a_duplicate 
-
-    #accepts_nested_attributes_for :company
 
     scope :order_by_rating, -> {left_joins(:reviews).group(:id).order('avg(stars) desc')}
     scope :most_popular, -> {left_joins(:reviews).group(:id).order('count(reviews.id) desc').limit(3)}  

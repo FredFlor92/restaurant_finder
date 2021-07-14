@@ -7,8 +7,13 @@ class RestaurantsController < ApplicationController
     end 
 
     def new
-        @restaurant = Restaurant.new
-        @restaurant.build_company
+        if params[:category_id]
+            category = Category.find(params[:category_id])
+            @restaurants = category.restaurants 
+          
+          else 
+            @restaurants = Restaurant.order_by_rating.includes(:category) 
+        end 
     end 
 
     def create
@@ -18,22 +23,28 @@ class RestaurantsController < ApplicationController
         if @restaurant.save
             redirect_to restaurant_path(@restaurant)
         else 
-            @restaurant.build_company
+            @restaurant.build_category
             render :new
         end 
     end 
     
     def index
-      @restaurants = Restaurant.order_by_rating.includes(:company)  
+      @restaurants = Restaurant.order_by_rating.includes(:category)  
     end 
 
     def show
     end 
 
     def edit 
+        if authorized_to_edit?(@restaurant) 
+            render :edit   
+           else 
+            redirect_to restaurant_path(@restaurant)   
+        end
     end 
 
     def update 
+        @restaurant = Restaurant.find_by(id: params[:id])   
         if @restaurant.update(restaurant_params)
           redirect_to restaurant_path(@restaurant)
         else
@@ -44,11 +55,19 @@ class RestaurantsController < ApplicationController
     private
 
     def restaurant_params
-        params.require(:restaurant).permit(:name, :category, :price_range, :address, :company_id, company_attributes: [:name])
+        params.require(:restaurant).permit(:name, :price_range, :address, :category_id, category_attributes: [:name])
     end 
 
     def set_restaurant
         @restaurant = Restaurant.find_by(id: params[:id])
         redirect_to restaurants_path if !@restaurant 
+    end
+
+    def redirect_if_not_authorized 
+        if @restaurant.update(name: params[:name], price_range: params[:price_range], address: params[:address])   
+          redirect_to restaurant_path(@restaurant)
+        else
+          redirect_to user_path(current_user)     
+        end 
     end
 end

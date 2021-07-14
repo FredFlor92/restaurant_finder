@@ -27,7 +27,7 @@ ActiveRecord::Schema.define(version: 2021_07_14_103214) do
 
   create_table "restaurants", force: :cascade do |t|
     t.string "name"
-    t.integer "price_range"
+    t.string "price_range"
     t.integer "address"
     t.integer "user_id"
     t.integer "category_id"

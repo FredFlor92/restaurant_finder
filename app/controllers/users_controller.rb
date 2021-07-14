@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
-
-    def new
-        
+    skip_before_action :redirect_if_not_logged_in, only: [:new, :create]
+   
+    def new 
     end 
 
     def create
@@ -18,7 +18,7 @@ class UsersController < ApplicationController
 
     def show
         redirect_if_not_logged_in
-        @user = User.find_by_id(params[:id])
+        @user = User.find_by(id: params[:id])
         redirect_to '/' if !@user
     end 
 

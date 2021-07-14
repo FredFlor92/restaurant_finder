@@ -6,12 +6,12 @@ class ReviewsController < ApplicationController
     end 
 
     def create
-        @review = Review.create(review_params) 
+        @review = current_user.reviews.build(review_params)
         if @review.save
-        redirect_to review_path(@review)
+          redirect_to review_path(@review)
         else
-            render :new
-        end 
+          render :new
+        end
     end 
   
     def show 
@@ -30,6 +30,6 @@ class ReviewsController < ApplicationController
     end 
 
     def review_params
-        params.require(:review)permit(:rating, :title, :content, :restaurant_id)
+        params.require(:review)permit(:restaurant_id, :content, :stars, :title)     
     end 
 end
