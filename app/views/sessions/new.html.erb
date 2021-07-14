@@ -1,8 +1,12 @@
-<h1>Welcome</h1>
+<h1> Log in Here! </h1>
 
-<%= link_to "Log in", '/login' %> 
-
-<br><br>
-OR 
-
-<%= link_to "Sign up", signup_path %>
+<% if flash[:message]%>
+   <%= flash[:message] %>
+<% end %>
+<%= form_for :user do |f| %>
+  <%= f.label :username %>
+  <%= f.text_field :username %>
+  <%= f.label :password %>
+  <%= f.password_field :password %>
+    <%= f.submit "Log in" %> 
+<% end %>
