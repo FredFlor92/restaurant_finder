@@ -16,6 +16,10 @@ class RestaurantsController < ApplicationController
             render :new
         end 
     end 
+    
+    def index
+        @restaurant = Restaurant.all
+    end 
 
     def show
     end 
