@@ -1,24 +1,21 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Rails Phase 3 Project
 
-Things you may want to cover:
+Overview:
 
-* Ruby version
+It is a Restaurant Finder and Review app. You create an account and then go on to add details of restaurant's you've been to and how the experince was. 
 
-* System dependencies
+RUNNING THE PROGRAM:
 
-* Configuration
+* Fork & Clone
+- bundle install-
 
-* Database creation
+* Running the APP
+- rails s-
 
-* Database initialization
+*Visit Webpage
+-http://127.0.0.1:3000/-
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+License
+The gem is available as open source under the terms of the MIT License.
