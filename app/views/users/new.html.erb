@@ -1,9 +1,19 @@
 <h1> Sign Up Here! </h1>
 
+
+
 <%= form_for(:user) do |f| %>
 
+  <ul>
+  <% @user.errors.full_messages.each do |error_message| %>
+  
+    <li><%= error_message %></li>
+  
+  <% end %>
+  </ul>
+
   <%= f.label :username %>
-  <%= f.text_field :username %>
+  <%= f.text_field :username, required:true %>
 
   <%= f.label :email %>
   <%= f.email_field :email %>
