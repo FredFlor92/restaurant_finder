@@ -2,10 +2,6 @@ class RestaurantsController < ApplicationController
     before_action :set_restaurant, only:[:show, :edit, :update]
     before_action :redirect_if_not_logged_in
 
-    def index
-        @restaurants = Restaurant.order_by_rating.includes(:company)
-    end 
-
     def new
         @restaurant = Restaurant.new 
         if params[:category_id]

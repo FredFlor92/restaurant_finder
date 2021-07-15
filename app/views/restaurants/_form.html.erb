@@ -22,13 +22,5 @@
   
     </div>
   
-    <p> Or create a new Category: </p>
-    <div>
-      <%= f.fields_for :category do |f| %>
-        <%= f.label :name %>
-        <%= f.text_field :name %>
-      <% end %> 
-    </div> 
-    <br>
     <%= f.submit %>
   <% end %>
