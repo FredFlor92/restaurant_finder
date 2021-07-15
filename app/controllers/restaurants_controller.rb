@@ -55,8 +55,8 @@ class RestaurantsController < ApplicationController
         end 
     end
 
-    def very_popular
-    @restaurants = Restaurant.very_popular
+    def most_popular
+    @restaurants = Restaurant.most_popular
     end 
 
     private
