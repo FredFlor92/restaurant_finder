@@ -8,6 +8,9 @@ Rails.application.routes.draw do
   delete '/logout' => 'sessions#destroy'
   get '/signup' => 'users#new'
   post '/signup' => 'users#create'
+
+  get 'auth/google_oauth2/callback', to: 'sessions#omniauth'
+  get 'auth/failure', to: redirect('/')
  
   resources :companies
   resources :reviews
@@ -19,9 +22,6 @@ Rails.application.routes.draw do
   resources :users, only: [:show]
 
   get '/very_popular' => 'restaurants#very_popular'
-
-  get '/auth/google_oauth2/callback' => 'sessions#omniauth'
-  
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
