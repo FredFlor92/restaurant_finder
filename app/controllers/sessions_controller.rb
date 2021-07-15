@@ -11,7 +11,7 @@ class SessionsController < ApplicationController
 
     if @user && @user.authenticate(params[:user][:password])
       session[:user_id] = @user.id 
-      redirect_to @user 
+      redirect_to @user
     else 
       flash[:error] = "Sorry, please try again." 
       render :new 
@@ -33,7 +33,7 @@ class SessionsController < ApplicationController
       session[:user_id] = @user.id 
       redirect_to @user
     else
-      #flash.now[:danger] = 'Invalid credentials'
+      flash.now[:danger] = 'Invalid credentials'
       render :new
     end
   end 
