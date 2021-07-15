@@ -30,7 +30,13 @@ class RestaurantsController < ApplicationController
     end 
     
     def index
-      @restaurants = Restaurant.order_by_rating.includes(:category)  
+        if params[:category_id]
+            category = Category.find(params[:category_id])
+            @restaurants = category.restaurants 
+    
+        else 
+            @restaurants = Restaurant.order_by_rating.includes(:category) 
+        end     
     end 
 
     def show
@@ -52,6 +58,10 @@ class RestaurantsController < ApplicationController
           render :edit
         end 
     end
+
+    def very_popular
+    @restaurants = Restaurant.very_popular
+    end 
 
     private
 

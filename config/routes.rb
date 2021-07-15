@@ -17,5 +17,11 @@ Rails.application.routes.draw do
   end 
   resources :categories
   resources :users, only: [:show]
+
+  get '/very_popular' => 'restaurants#very_popular'
+
+  get '/auth/google_oauth2/callback' => 'sessions#omniauth'
+  
+
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
