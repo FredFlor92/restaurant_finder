@@ -19,7 +19,7 @@ Rails.application.routes.draw do
     resources :companies, only: [:new, :index]
   end 
   resources :categories
-  resources :users, only: [:show]
+  resources :users
 
   get '/very_popular' => 'restaurants#very_popular'
 

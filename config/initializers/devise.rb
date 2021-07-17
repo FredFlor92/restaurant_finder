@@ -1,0 +1,1 @@
+config.omniauth :google_oauth2, client, secret
