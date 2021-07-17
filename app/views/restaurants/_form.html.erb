@@ -3,15 +3,18 @@
     <div>
       <%= f.label :name %>
       <%= f.text_field :name %>
+      <br><br>
     </div>
     
     <div>
       <%= f.label :price_range %> 
-      <%= f.select :price_range,options_for_select(["$", "$$", "$$$"]), include_blank: true %>   
+      <%= f.select :price_range,options_for_select(["$", "$$", "$$$"]), include_blank: true %>  
+      <br><br>
     </div>
     <div>
       <%= f.label :address %>
       <%= f.text_field :address %> 
+      <br><br>
     </div>
 
     <p> Select a Category that already exists: </p>
@@ -19,6 +22,6 @@
       <%= f.collection_select :category_id, Category.all, :id, :name, include_blank: 'Select One'%>
   
     </div>
-  
+  <br><br>
     <%= f.submit %>
   <% end %>
