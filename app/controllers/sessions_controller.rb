@@ -1,24 +1,21 @@
 class SessionsController < ApplicationController
   skip_before_action :redirect_if_not_logged_in
   
- 
-
   def new
-    @user = User.new
+    
   end 
 
   def create
-    @user = User.find_by(username: params[:user][:username]) 
-    if @user && @user.authenticate(params[:user][:password])
+    @user = User.find_by(username: params[:session][:username]) 
+    if @user && @user.authenticate(params[:session][:password])
       session[:user_id] = @user.id 
       redirect_to user_path(@user)
     else 
-      flash[:error] = "Sorry, please try again." 
+      flash[:errors] = "Sorry, please try again." 
       render :new 
     end 
 
   end 
-
 
   def omniauth
     @user = User.find_or_create_by(uid: auth['uid']) do |u|

@@ -1,7 +1,5 @@
 <%= form_for(@restaurant) do |f|%> 
-
-    <%= render 'layouts/errors', object: f.object %>
-    
+    <%= render 'restaurants/errors' %>
     <div>
       <%= f.label :name %>
       <%= f.text_field :name %>

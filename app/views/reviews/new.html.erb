@@ -2,7 +2,7 @@
 
 
  <%= form_for(@review) do |f|%>
-    <%= render 'layouts/errors', object: f.object %>
+  <%= render 'reviews/errors' %>
   <% if params[:restaurant_id] %>
     <%= f.hidden_field :restaurant_id %>
   <% else %>
