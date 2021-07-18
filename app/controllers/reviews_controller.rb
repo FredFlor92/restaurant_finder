@@ -31,6 +31,14 @@ class ReviewsController < ApplicationController
         end
     end
 
+    def edit 
+      if authorized_to_edit?(@review) 
+          render :edit   
+         else 
+          redirect_to review_path(@review)   
+      end
+    end 
+
     private 
 
     def review_params

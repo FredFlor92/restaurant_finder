@@ -4,7 +4,7 @@ Rails Phase 3 Project
 
 Overview:
 
-It is a Restaurant Finder and Review app. You create an account and then go on to add details of restaurant's you've been to and how the experince was. 
+It is a Restaurant Review app. You create an account and then go on to add details of restaurant's you've been to and how the experince was. 
 
 RUNNING THE PROGRAM:
 
