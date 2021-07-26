@@ -1,9 +1,8 @@
 class ReviewsController < ApplicationController
     before_action :redirect_if_not_logged_in 
     
-    def new
-        @review = Review.new 
-        if @restaurant = Restaurant.find_by_id(params[:restaurant_id])
+    def new 
+        if params[:restaurant_id] && @restaurant = Restaurant.find_by_id(params[:restaurant_id])
           @review = @restaurant.reviews.build
         else
           @review = Review.new
@@ -13,7 +12,7 @@ class ReviewsController < ApplicationController
     def create
         @review = current_user.reviews.build(review_params)
         if @review.save
-          redirect_to review_path(@review)
+          redirect_to reviews_path
         else
           render :new
         end
@@ -24,7 +23,7 @@ class ReviewsController < ApplicationController
     end
     
     def index
-        if @restaurant = Restaurant.find_by_id(params[:restaurant_id])
+        if params[:restaurant_id] && @restaurant = Restaurant.find_by_id(params[:restaurant_id])
           @reviews = @restaurant.reviews
         else
           @reviews = Review.all

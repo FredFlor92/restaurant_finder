@@ -12,12 +12,12 @@ Rails.application.routes.draw do
   get 'auth/google_oauth2/callback', to: 'sessions#omniauth'
   get 'auth/failure', to: redirect('/')
  
-  resources :companies
   resources :reviews
 
   resources :restaurants do
-    resources :companies, only: [:new, :index]
+    resources :reviews, only: [:new, :index, :create]
   end 
+  
   resources :categories
   resources :users
 
